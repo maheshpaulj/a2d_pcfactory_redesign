@@ -50,7 +50,7 @@ const Navbar = () => {
               <Link
                 href="/"
                 className={cn(
-                  "px-3 py-2 rounded-md text-sm font-medium",
+                  "px-3 py-2 rounded-md text-sm font-medium transition",
                   isScrolled ? "text-gray-900 hover:bg-gray-200" : "text-white hover:bg-white/20"
                 )}
               >
@@ -59,7 +59,7 @@ const Navbar = () => {
               <Link
                 href="/about"
                 className={cn(
-                  "px-3 py-2 rounded-md text-sm font-medium",
+                  "px-3 py-2 rounded-md text-sm font-medium transition",
                   isScrolled ? "text-gray-900 hover:bg-gray-200" : "text-white hover:bg-white/20"
                 )}
               >
@@ -68,7 +68,7 @@ const Navbar = () => {
               <DropdownMenu>
                 <DropdownMenuTrigger
                   className={cn(
-                    "px-3 py-2 rounded-md text-sm font-medium flex items-center",
+                    "px-3 py-2 rounded-md text-sm font-medium flex items-center transition",
                     isScrolled ? "text-gray-900 hover:bg-gray-200" : "text-white hover:bg-white/20"
                   )}
                 >
@@ -93,18 +93,9 @@ const Navbar = () => {
 
           {/* Contact */}
           <div className="hidden md:block">
-            {/* <Link
-              href="/contact"
-              className={cn(
-                "px-3 py-2 rounded-md text-sm font-medium",
-                isScrolled ? "text-gray-900 hover:bg-gray-200" : "text-white hover:bg-white/20"
-              )}
-            >
-              Contact
-            </Link> */}
             <button
               type="submit"
-              className={`flex justify-center gap-2 items-center ${isScrolled ? "border-1 border-gray-700 bg-gray-50" : "bg-black text-white"} mx-auto  backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-amber-500 hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-2 py-1 overflow-hidden border-2 rounded-full group`}
+              className={`flex justify-center gap-2 items-center ${isScrolled ? "border-gray-700 bg-gray-50 hover:text-black" : "bg-black text-white hover:text-white"} mx-auto  backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-amber-500 transition-colors before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-2 py-1 overflow-hidden border rounded-full group`}
             >
               Contact
               <svg

@@ -6,6 +6,7 @@ import gsap from "gsap";
 import Image from "next/image";
 import { Tilt } from "@/components/ui/tilt"; // Import custom Tilt component
 import { Spotlight } from "@/components/ui/spotlight"; // Import custom Spotlight component
+import { motion } from "framer-motion"; // Import motion from framer-motion
 
 const playfair = Playwrite_IT_Moderna({
   weight: ["400"],
@@ -83,6 +84,66 @@ export default function Home() {
       );
   }, []);
 
+  // Framer Motion variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 40, opacity: 0 },
+    visible: { 
+      y: 0, 
+      opacity: 1,
+      transition: { 
+        duration: 0.6, 
+        ease: "easeOut" 
+      }
+    }
+  };
+
+  const sectionHeaderVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: { 
+      y: 0, 
+      opacity: 1,
+      transition: { 
+        duration: 0.8, 
+        ease: "easeOut" 
+      }
+    }
+  };
+
+  const leftToRightVariants = {
+    hidden: { x: -50, opacity: 0 },
+    visible: { 
+      x: 0, 
+      opacity: 1,
+      transition: { 
+        duration: 0.8, 
+        ease: "easeOut" 
+      }
+    }
+  };
+
+  const rightToLeftVariants = {
+    hidden: { x: 50, opacity: 0 },
+    visible: { 
+      x: 0, 
+      opacity: 1,
+      transition: { 
+        duration: 0.8, 
+        ease: "easeOut" 
+      }
+    }
+  };
+
   return (
     <main>
       {/* Hero Section */}
@@ -92,12 +153,12 @@ export default function Home() {
       >
         <div
           ref={badgeRef}
-          className="bg-white rounded-full px-3 py-1 shadow-lg flex items-center gap-2"
+          className="bg-white rounded-full px-3 py-1 shadow-lg flex items-center gap-2 z-10"
         >
           <Image src={"/logo.webp"} alt="logo" width={28} height={28} />
           <span className="text-black font-bold">HI SOLDIERS</span>
         </div>
-        <div ref={glow1Ref} className="yellow__gradient -top-[20%] w-[40%] h-[25%] absolute" />
+        <div ref={glow1Ref} className="yellow__gradient -top-[20%] w-[40%] h-[25%] absolute z-0" />
         <div className="relative">
           <div className="text-center max-w-4xl mx-auto px-4 text-white z-10 flex flex-col items-center justify-center">
             <h1 ref={titleRef} className="text-6xl font-bold mb-6">
@@ -147,8 +208,17 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section ref={section1Ref} className="py-16 bg-white text-black">
-        <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <section 
+        ref={section1Ref} 
+        className="py-16 bg-white text-black overflow-hidden"
+      >
+        <motion.div 
+          className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {[
             {
               title: "Up to 1-Year On-Site Warranty",
@@ -160,47 +230,59 @@ export default function Home() {
             },
             {
               title: "Performance Transparency",
-              desc: "Know your system’s capabilities before you order.",
+              desc: "Know your system's capabilities before you order.",
             },
             {
               title: "Free Pan-India Delivery",
               desc: "Fast, reliable shipping at no extra cost, nationwide.",
             },
           ].map((feature, index) => (
-            <Tilt
-              key={index}
-              rotationFactor={8}
-              isRevese
-              style={{ borderRadius: "12px" }}
-              className="flex max-w-[270px] flex-col hover:shadow-md overflow-hidden border border-zinc-950/10 bg-white dark:border-zinc-50/10 dark:bg-zinc-900 group relative"
-            >
-              <Spotlight
-                className="z-10 from-white/50 via-white/20 to-white/10 blur-2xl"
-                size={248}
-                springOptions={{
-                  stiffness: 26.7,
-                  damping: 4.1,
-                  mass: 0.2,
-                }}
-              />
-              <div className="p-4">
-                <h3 className="font-mono text-xl font-semibold mb-2 text-zinc-950 dark:text-zinc-50">
-                  {feature.title}
-                </h3>
-                <p className="text-zinc-700 dark:text-zinc-400">{feature.desc}</p>
-                <div className="mt-4 h-1 w-12 bg-yellow-500 mx-auto rounded-full" />
-              </div>
-            </Tilt>
+            <motion.div key={index} variants={itemVariants}>
+              <Tilt
+                rotationFactor={8}
+                isRevese
+                style={{ borderRadius: "12px" }}
+                className="flex max-w-[270px] flex-col hover:shadow-md transition overflow-hidden border border-zinc-950/10 bg-white dark:border-zinc-50/10 dark:bg-zinc-900 group relative"
+              >
+                <Spotlight
+                  className="z-10 from-white/50 via-white/20 to-white/10 blur-2xl"
+                  size={248}
+                  springOptions={{
+                    stiffness: 26.7,
+                    damping: 4.1,
+                    mass: 0.2,
+                  }}
+                />
+                <div className="p-4 flex flex-col justify-between h-48">
+                  <div>
+                    <h3 className="font-mono text-xl font-semibold mb-2 text-zinc-950 dark:text-zinc-50">
+                      {feature.title}
+                    </h3>
+                    <p className="text-zinc-700 dark:text-zinc-400">{feature.desc}</p>
+                  </div>
+                  <div className="mt-4 h-1 w-12 bg-yellow-500 mx-auto rounded-full" />
+                </div>
+              </Tilt>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* How Things Work Section */}
-      <section ref={section2Ref} className="py-16 bg-white text-black">
+      <section 
+        ref={section2Ref} 
+        className="py-16 bg-white text-black overflow-hidden"
+      >
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12">
+          <motion.h2 
+            className="text-4xl font-bold text-center mb-12"
+            variants={sectionHeaderVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
             How Things Work at <span className="text-yellow-500">A2D PC Factory</span>
-          </h2>
+          </motion.h2>
 
           {[
             {
@@ -210,7 +292,7 @@ export default function Home() {
             },
             {
               title: "Deep Technical Consulting",
-              desc: "Our expert engineers provide in-depth support before your PC arrives, equipping you with the knowledge and skills for optimal use. We’re committed to empowering you every step of the way.",
+              desc: "Our expert engineers provide in-depth support before your PC arrives, equipping you with the knowledge and skills for optimal use. We're committed to empowering you every step of the way.",
               img: "/conversation.png",
             },
             {
@@ -224,11 +306,15 @@ export default function Home() {
               img: "/package.png",
             },
           ].map((item, index) => (
-            <div
+            <motion.div
               key={index}
               className={`flex flex-col ${
                 index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
               } items-center gap-8 mb-12`}
+              variants={index % 2 === 0 ? leftToRightVariants : rightToLeftVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
             >
               <div className="md:w-1/2 p-6">
                 <h3 className="text-3xl font-semibold mb-4">{item.title}</h3>
@@ -262,27 +348,37 @@ export default function Home() {
                   className="h-80 w-full rounded-lg object-contain grayscale duration-700 group-hover:grayscale-0"
                 />
               </Tilt>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
       {/* Get in Touch Section */}
       <section className="py-16">
-        <div className="max-w-6xl mx-auto text-center bg-black rounded-2xl px-4 py-24 text-white">
-          <h2 className="text-4xl font-bold mb-6">
-            Get in <span className="text-yellow-500">Touch</span>
-          </h2>
-          <p className="text-lg mb-8 max-w-2xl mx-auto">
-            Have questions or ready to build your dream PC? Reach out to us—we’re here to help you every step of the way!
-          </p>
-          <a
-            href="mailto:support@a2dpcfactory.com"
-            className="inline-block bg-yellow-500 text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-400 transition-colors"
-          >
-            Contact Us
-          </a>
-        </div>
+        <motion.div 
+          className="max-w-6xl mx-auto text-center p-1 bg-gradient-to-r from-amber-400 to-amber-600 rounded-2xl text-white relative overflow-hidden shadow-lg"
+          initial={{ scale: 0.9 }}
+          whileInView={{ scale: 1 }}
+          transition={{ 
+            duration: 0.5,
+            ease: "easeOut"
+          }}
+        >
+          <div className="bg-black max-w-6xl mx-auto text-center rounded-xl px-4 py-24">
+            <h2 className="text-4xl font-bold mb-6">
+              Get in <span className="text-yellow-500">Touch</span>
+            </h2>
+            <p className="text-lg mb-8 max-w-2xl mx-auto">
+              Have questions or ready to build your dream PC? Reach out to us—we're here to help you every step of the way!
+            </p>
+            <a
+              href="mailto:support@a2dpcfactory.com"
+              className="inline-block bg-yellow-500 text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-400 hover:scale-105 transition-all"
+            >
+              Contact Us
+            </a>
+          </div>
+        </motion.div>
       </section>
     </main>
   );

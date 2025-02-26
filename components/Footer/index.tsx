@@ -57,7 +57,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <div className=" relative h-[500px]" style={{clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0 100%)"}}>
+    <div className="relative h-[500px]" style={{clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0 100%)"}}>
         <div className="fixed h-[500px] w-full bottom-0">
             <footer className="bg-black text-white py-16 h-full flex items-end">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,13 +96,13 @@ const Footer: React.FC = () => {
                     <motion.div className="footer-section" variants={sectionVariants}>
                         <h4 className="text-lg font-semibold text-amber-400 mb-4">Contact</h4>
                         <div className="space-y-3 text-sm">
-                        <a className="flex items-center text-gray-300 hover:text-amber-400" href='tel:+91 94457 47768'>
+                        <a className="flex items-center text-gray-300 hover:text-amber-400 transition-colors" href='tel:+91 94457 47768'>
                             <FaPhoneAlt className="mr-2 text-amber-400" /> +91 94457 47768
                         </a>
-                        <a className="flex items-center text-gray-300 hover:text-amber-400" href='tel:+91 94457 47768'>
+                        <a className="flex items-center text-gray-300 hover:text-amber-400 transition-colors" href='tel:+91 90253 80083'>
                             <FaPhoneAlt className="mr-2 text-amber-400" /> +91 90253 80083
                         </a>
-                        <a className="flex items-center text-gray-300 hover:text-amber-400" href='mailto:support@a2dpcfactory.com'>
+                        <a className="flex items-center text-gray-300 hover:text-amber-400 transition-colors" href='mailto:support@a2dpcfactory.com'>
                             <FaEnvelope className="mr-2 text-amber-400" /> support@a2dpcfactory.com
                         </a>
                         </div>
@@ -113,14 +113,14 @@ const Footer: React.FC = () => {
                         <motion.a 
                             variants={iconVariants}
                             href="https://www.youtube.com/@A2DChannel" 
-                            className="social-icon text-gray-300 hover:text-amber-400"
+                            className="social-icon text-gray-300 hover:text-red-500 transition-colors"
                         >
                             <FaYoutube size={24} />
                         </motion.a>
                         <motion.a 
                             variants={iconVariants}
                             href="https://www.instagram.com/a2dpcfactory/" 
-                            className="social-icon text-gray-300 hover:text-amber-400"
+                            className="social-icon text-gray-300 hover:text-pink-400 transition-colors"
                         >
                             <FaInstagram size={24} />
                         </motion.a>
@@ -150,7 +150,7 @@ const Footer: React.FC = () => {
                         <Link href="/" className="text-amber-400 hover:text-amber-300 transition-colors">
                         A2D PC Factory
                         </Link>
-                        . All Rights Reserved. Crafted with precision.
+                        . All Rights Reserved. Designed by <Link href={"https://maheshpaul.is-a.dev/"} target='_blank' className='hover:text-emerald-600 transition-all'>Mahesh Paul</Link>.
                     </p>
                     </div>
                 </div>
