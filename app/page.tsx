@@ -230,7 +230,7 @@ export default function Home() {
             },
             {
               title: "Performance Transparency",
-              desc: "Know your system's capabilities before you order.",
+              desc: "Know your system&apos;s capabilities before you order.",
             },
             {
               title: "Free Pan-India Delivery",
@@ -292,7 +292,7 @@ export default function Home() {
             },
             {
               title: "Deep Technical Consulting",
-              desc: "Our expert engineers provide in-depth support before your PC arrives, equipping you with the knowledge and skills for optimal use. We're committed to empowering you every step of the way.",
+              desc: "Our expert engineers provide in-depth support before your PC arrives, equipping you with the knowledge and skills for optimal use. We&apos;re committed to empowering you every step of the way.",
               img: "/conversation.png",
             },
             {
@@ -369,7 +369,7 @@ export default function Home() {
               Get in <span className="text-yellow-500">Touch</span>
             </h2>
             <p className="text-lg mb-8 max-w-2xl mx-auto">
-              Have questions or ready to build your dream PC? Reach out to us—we're here to help you every step of the way!
+              Have questions or ready to build your dream PC? Reach out to us—we&apos;re here to help you every step of the way!
             </p>
             <a
               href="mailto:support@a2dpcfactory.com"
