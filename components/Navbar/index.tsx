@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -51,7 +51,7 @@ const Navbar = () => {
                 href="/"
                 className={cn(
                   "px-3 py-2 rounded-md text-sm font-medium transition",
-                  isScrolled ? "text-gray-900 hover:bg-gray-200" : "text-white hover:bg-white/20"
+                  isScrolled ? "text-gray-900 bg-white hover:bg-gray-200" : "text-white hover:bg-white/20"
                 )}
               >
                 Home
@@ -60,7 +60,7 @@ const Navbar = () => {
                 href="/about"
                 className={cn(
                   "px-3 py-2 rounded-md text-sm font-medium transition",
-                  isScrolled ? "text-gray-900 hover:bg-gray-200" : "text-white hover:bg-white/20"
+                  isScrolled ? "text-gray-900 bg-white hover:bg-gray-200" : "text-white hover:bg-white/20"
                 )}
               >
                 About
@@ -69,7 +69,7 @@ const Navbar = () => {
                 <DropdownMenuTrigger
                   className={cn(
                     "px-3 py-2 rounded-md text-sm font-medium flex items-center transition",
-                    isScrolled ? "text-gray-900 hover:bg-gray-200" : "text-white hover:bg-white/20"
+                    isScrolled ? "text-gray-900 bg-white hover:bg-gray-200" : "text-white hover:bg-white/20"
                   )}
                 >
                   Products
@@ -118,14 +118,14 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={cn(
                 "inline-flex items-center justify-center p-2 rounded-md",
-                isScrolled ? "text-gray-900" : "text-white"
+                isScrolled ? "text-gray-900 bg-white" : "text-white"
               )}
             >
               <span className="sr-only">Open main menu</span>
               {isMobileMenuOpen ? (
-                <span className="text-2xl">×</span>
+                <X className="h-8 w-8" />
               ) : (
-                <span className="text-2xl">≡</span>
+                <Menu className="h-8 w-8" />
               )}
             </button>
           </div>

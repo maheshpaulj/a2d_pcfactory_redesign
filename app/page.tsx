@@ -230,7 +230,7 @@ export default function Home() {
             },
             {
               title: "Performance Transparency",
-              desc: "Know your system&apos;s capabilities before you order.",
+              desc: "Know your system's capabilities before you order.",
             },
             {
               title: "Free Pan-India Delivery",
@@ -242,7 +242,7 @@ export default function Home() {
                 rotationFactor={8}
                 isRevese
                 style={{ borderRadius: "12px" }}
-                className="flex max-w-[270px] flex-col hover:shadow-md transition overflow-hidden border border-zinc-950/10 bg-white dark:border-zinc-50/10 dark:bg-zinc-900 group relative"
+                className="flex max-w-[270px] flex-col hover:shadow-md transition-shadow overflow-hidden border border-zinc-950/10 bg-white dark:border-zinc-50/10 dark:bg-zinc-900 group relative"
               >
                 <Spotlight
                   className="z-10 from-white/50 via-white/20 to-white/10 blur-2xl"
@@ -292,7 +292,7 @@ export default function Home() {
             },
             {
               title: "Deep Technical Consulting",
-              desc: "Our expert engineers provide in-depth support before your PC arrives, equipping you with the knowledge and skills for optimal use. We&apos;re committed to empowering you every step of the way.",
+              desc: "Our expert engineers provide in-depth support before your PC arrives, equipping you with the knowledge and skills for optimal use. We're committed to empowering you every step of the way.",
               img: "/conversation.png",
             },
             {
