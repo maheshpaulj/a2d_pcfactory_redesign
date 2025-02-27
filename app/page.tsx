@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Tilt } from "@/components/ui/tilt"; // Import custom Tilt component
 import { Spotlight } from "@/components/ui/spotlight"; // Import custom Spotlight component
 import { motion } from "framer-motion"; // Import motion from framer-motion
+import TimelineSection from "@/components/TimelineSection";
 
 const playfair = Playwrite_IT_Moderna({
   weight: ["400"],
@@ -19,8 +20,7 @@ export default function Home() {
   const textRef = useRef<HTMLParagraphElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
   const accentLineRef = useRef<HTMLDivElement>(null);
-  const section1Ref = useRef<HTMLDivElement>(null);
-  const section2Ref = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const glow1Ref = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -200,7 +200,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <video ref={videoRef} src="/PC.mp4" muted autoPlay className="scale-[.80] z-10" loop />
+        <video ref={videoRef} src="/PC.mp4" muted autoPlay className="scale-[.80] z-10" loop playsInline />
         <div
           ref={accentLineRef}
           className="absolute bottom-0 left-0 w-full h-1 bg-yellow-500"
@@ -209,7 +209,7 @@ export default function Home() {
 
       {/* Features Section */}
       <section 
-        ref={section1Ref} 
+        ref={sectionRef} 
         className="py-16 bg-white text-black overflow-hidden"
       >
         <motion.div 
@@ -269,89 +269,7 @@ export default function Home() {
       </section>
 
       {/* How Things Work Section */}
-      <section 
-        ref={section2Ref} 
-        className="py-16 bg-white text-black overflow-hidden"
-      >
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.h2 
-            className="text-4xl font-bold text-center mb-12"
-            variants={sectionHeaderVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            How Things Work at <span className="text-yellow-500">A2D PC Factory</span>
-          </motion.h2>
-
-          {[
-            {
-              title: "Building Customer Persona",
-              desc: "We craft detailed customer personas based on real data and insights from direct interactions. This allows our sales team to deliver tailored PC solutions that perfectly match your needs, preferences, and challenges.",
-              img: "/customer-support.png",
-            },
-            {
-              title: "Deep Technical Consulting",
-              desc: "Our expert engineers provide in-depth support before your PC arrives, equipping you with the knowledge and skills for optimal use. We're committed to empowering you every step of the way.",
-              img: "/conversation.png",
-            },
-            {
-              title: "Pan-India Free Delivery",
-              desc: "Enjoy seamless, complimentary delivery across India. We use premium packing materials to ensure your purchase arrives safe and secure.",
-              img: "/delivery-bike.png",
-            },
-            {
-              title: "Ultra-Durable Packing",
-              desc: "Our three-layer protection system cushions against shocks, reinforces structural integrity, and shields from environmental factors like moisture and dust—ensuring your PC arrives in pristine condition.",
-              img: "/package.png",
-            },
-          ].map((item, index) => (
-            <motion.div
-              key={index}
-              className={`flex flex-col ${
-                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              } items-center gap-8 mb-12`}
-              variants={index % 2 === 0 ? leftToRightVariants : rightToLeftVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-            >
-              <div className="md:w-1/2 p-6">
-                <h3 className="text-3xl font-semibold mb-4">{item.title}</h3>
-                <p className="text-gray-600">{item.desc}</p>
-              </div>
-              <Tilt
-                rotationFactor={6}
-                isRevese
-                style={{ transformOrigin: "center center" }}
-                springOptions={{
-                  stiffness: 26.7,
-                  damping: 4.1,
-                  mass: 0.2,
-                }}
-                className="md:w-1/2 group relative rounded-lg"
-              >
-                <Spotlight
-                  className="z-10 from-white/50 via-white/20 to-white/10 blur-2xl"
-                  size={248}
-                  springOptions={{
-                    stiffness: 26.7,
-                    damping: 4.1,
-                    mass: 0.2,
-                  }}
-                />
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  width={400}
-                  height={300}
-                  className="h-80 w-full rounded-lg object-contain grayscale duration-700 group-hover:grayscale-0"
-                />
-              </Tilt>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+      <TimelineSection />
 
       {/* Get in Touch Section */}
       <section className="py-16">
