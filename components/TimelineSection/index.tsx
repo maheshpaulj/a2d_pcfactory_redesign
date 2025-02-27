@@ -44,7 +44,7 @@ export function TimelineSection() {
           </div>
           <p className="text-neutral-800 dark:text-neutral-200  font-normal mb-4">
             Our expert engineers provide in-depth support before your PC arrives, equipping you with the 
-            knowledge and skills for optimal use. We're committed to empowering you every step of the way.
+            knowledge and skills for optimal use. We&apos;re committed to empowering you every step of the way.
           </p>
         </div>
       ),

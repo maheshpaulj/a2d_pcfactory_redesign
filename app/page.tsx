@@ -108,42 +108,6 @@ export default function Home() {
     }
   };
 
-  const sectionHeaderVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1,
-      transition: { 
-        duration: 0.8, 
-        ease: "easeOut" 
-      }
-    }
-  };
-
-  const leftToRightVariants = {
-    hidden: { x: -50, opacity: 0 },
-    visible: { 
-      x: 0, 
-      opacity: 1,
-      transition: { 
-        duration: 0.8, 
-        ease: "easeOut" 
-      }
-    }
-  };
-
-  const rightToLeftVariants = {
-    hidden: { x: 50, opacity: 0 },
-    visible: { 
-      x: 0, 
-      opacity: 1,
-      transition: { 
-        duration: 0.8, 
-        ease: "easeOut" 
-      }
-    }
-  };
-
   return (
     <main>
       {/* Hero Section */}
