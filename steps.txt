@@ -1,0 +1,288 @@
+// Your setupContent array with TypeScript typing
+const setupContent = [
+  {
+    title: "Step 1: Place Package",
+    description: "Place the package on a stable surface.",
+    content: (
+      <Image
+        src="/setup/Tuto_Pic_1.jpg" // Replace with your actual image path
+        width={300}
+        height={300}
+        className="h-full w-full object-cover"
+        alt="Step 1: Place package on stable surface"
+      />
+    ),
+  },
+  {
+    title: "Step 2: Cut Package",
+    description: "Use scissors/box cutter to cut the package.",
+    content: (
+      <Image
+        src="/setup/Tuto_Pic_2.jpg"
+        width={300}
+        height={300}
+        className="h-full w-full object-cover"
+        alt="Step 2: Cut package"
+      />
+    ),
+  },
+  {
+    title: "Step 3: Avoid Deep Cuts",
+    description: "Avoid cutting too deeply to prevent damage.",
+    content: (
+      <Image
+        src="/setup/Tuto_Pic_3.jpg"
+        width={300}
+        height={300}
+        className="h-full w-full object-cover"
+        alt="Step 3: Avoid deep cuts"
+      />
+    ),
+  },
+  // ... Continue this pattern for steps 4-39
+  {
+    title: "Step 4: After Removing Cover",
+    description: "After removing packaging cover.",
+    content: (
+      <Image src="/setup/Tuto_Pic_4.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 4" />
+    ),
+  },
+  {
+    title: "Step 5: Lift Edge Boards",
+    description: "Gently lift the edge boards from all sides.",
+    content: (
+      <Image src="/setup/Tuto_Pic_5.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 5" />
+    ),
+  },
+  {
+    title: "Step 6: Remove Edge Boards",
+    description: "Carefully remove edge boards except bottom.",
+    content: (
+      <Image src="/setup/Tuto_Pic_6.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 6" />
+    ),
+  },
+  {
+    title: "Step 7: Remove Foam",
+    description: "Slide out foam, support PC.",
+    content: (
+      <Image src="/setup/Tuto_Pic_7.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 7" />
+    ),
+  },
+  {
+    title: "Step 8: Cut Top",
+    description: "Cut the top of the big box.",
+    content: (
+      <Image src="/setup/Tuto_Pic_8.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 8" />
+    ),
+  },
+  {
+    title: "Step 9: Fold Tabs",
+    description: "Fold the cardboard box tabs out.",
+    content: (
+      <Image src="/setup/Tuto_Pic_9.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 9" />
+    ),
+  },
+  {
+    title: "Step 10: Turn Over",
+    description: "Then turn it over and lift the box.",
+    content: (
+      <Image src="/setup/Tuto_Pic_10.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 10" />
+    ),
+  },
+  {
+    title: "Step 11: Flip Upside Down",
+    description: "Carefully flip it upside down.",
+    content: (
+      <Image src="/setup/Tuto_Pic_11.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 11" />
+    ),
+  },
+  {
+    title: "Step 12: Lift Box",
+    description: "Then you can easily lift off the box.",
+    content: (
+      <Image src="/setup/Tuto_Pic_12.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 12" />
+    ),
+  },
+  {
+    title: "Step 13: Place PC",
+    description: "Hold the PC, place it on the surface.",
+    content: (
+      <Image src="/setup/Tuto_Pic_13.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 13" />
+    ),
+  },
+  {
+    title: "Step 14: Remove Bottom Protectors",
+    description: "Remove polystyrene edge protectors on bottom.",
+    content: (
+      <Image src="/setup/Tuto_Pic_14.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 14" />
+    ),
+  },
+  {
+    title: "Step 15: Remove Top Protectors",
+    description: "Remove polystyrene edge protectors on top.",
+    content: (
+      <Image src="/setup/Tuto_Pic_15.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 15" />
+    ),
+  },
+  {
+    title: "Step 16: Remove Bag",
+    description: "Remove the protective bag covering the PC.",
+    content: (
+      <Image src="/setup/Tuto_Pic_16.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 16" />
+    ),
+  },
+  {
+    title: "Step 17: After Cover Removal",
+    description: "After removing the protective cover.",
+    content: (
+      <Image src="/setup/Tuto_Pic_17.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 17" />
+    ),
+  },
+  {
+    title: "Step 18: Lay PC Down",
+    description: "Lay down the PC with glass window facing up.",
+    content: (
+      <Image src="/setup/Tuto_Pic_18.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 18" />
+    ),
+  },
+  {
+    title: "Step 19: Remove Screw",
+    description: "Remove the screw for opening the glass panel.",
+    content: (
+      <Image src="/setup/Tuto_Pic_19.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 19" />
+    ),
+  },
+  {
+    title: "Step 20: Open Panel",
+    description: "Open the glass panel.",
+    content: (
+      <Image src="/setup/Tuto_Pic_20.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 20" />
+    ),
+  },
+  {
+    title: "Step 21: Check Inside",
+    description: "Check for packaging foam or RT PACK inside.",
+    content: (
+      <Image src="/setup/Tuto_Pic_21.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 21" />
+    ),
+  },
+  {
+    title: "Step 22: Small PC Foam",
+    description: "For smaller PCs, we'll use packaging foam.",
+    content: (
+      <Image src="/setup/Tuto_Pic_22.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 22" />
+    ),
+  },
+  {
+    title: "Step 23: Large PC RT Pack",
+    description: "For larger PCs, we'll use RT pack.",
+    content: (
+      <Image src="/setup/Tuto_Pic_23.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 23" />
+    ),
+  },
+  {
+    title: "Step 24: Remove Small Foam",
+    description: "Remove packaging foam from smaller PCs.",
+    content: (
+      <Image src="/setup/Tuto_Pic_24.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 24" />
+    ),
+  },
+  {
+    title: "Step 25: Remove RT Pack",
+    description: "Remove RT pack from larger PCs.",
+    content: (
+      <Image src="/setup/Tuto_Pic_25.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 25" />
+    ),
+  },
+  {
+    title: "Step 26: Review Documents",
+    description: "Review documents for setup and warranty.",
+    content: (
+      <Image src="/setup/Tuto_Pic_26.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 26" />
+    ),
+  },
+  {
+    title: "Step 27: Place on Table",
+    description: "Place the PC on the table.",
+    content: (
+      <Image src="/setup/Tuto_Pic_27.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 27" />
+    ),
+  },
+  {
+    title: "Step 28: Plug SMPS",
+    description: "Plug the power cable into SMPS socket.",
+    content: (
+      <Image src="/setup/Tuto_Pic_28.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 28" />
+    ),
+  },
+  {
+    title: "Step 29: Connect Power",
+    description: "Connect power cable to power supply socket.",
+    content: (
+      <Image src="/setup/Tuto_Pic_29.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 29" />
+    ),
+  },
+  {
+    title: "Step 30: Connect HDMI",
+    description: "Connect PC and monitor using HDMI cable.",
+    content: (
+      <Image src="/setup/Tuto_Pic_30.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 30" />
+    ),
+  },
+  {
+    title: "Step 31: GPU HDMI",
+    description: "If PC has GPU, plug HDMI into GPU not motherboard.",
+    content: (
+      <Image src="/setup/Tuto_Pic_31.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 31" />
+    ),
+  },
+  {
+    title: "Step 33: GPU Power",
+    description: "Plug the PC power supply to the GPU.",
+    content: (
+      <Image src="/setup/Tuto_Pic_33.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 33" />
+    ),
+  },
+  {
+    title: "Step 34: Connect Wi-Fi",
+    description: "Connect the Wi-Fi antenna, if applicable.",
+    content: (
+      <Image src="/setup/Tuto_Pic_34.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 34" />
+    ),
+  },
+  {
+    title: "Step 35: Connect Peripherals",
+    description: "Connect keyboard and mouse.",
+    content: (
+      <Image src="/setup/Tuto_Pic_35.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 35" />
+    ),
+  },
+  {
+    title: "Step 36: Switch Power",
+    description: "Switch on the power supply.",
+    content: (
+      <Image src="/setup/Tuto_Pic_36.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 36" />
+    ),
+  },
+  {
+    title: "Step 37: SMPS On",
+    description: "Set SMPS switch from '0' to '1' to turn on.",
+    content: (
+      <Image src="/setup/Tuto_Pic_37.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 37" />
+    ),
+  },
+  {
+    title: "Step 38: Power On",
+    description: "Finally power on the PC.",
+    content: (
+      <Image src="/setup/Tuto_Pic_38.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 38" />
+    ),
+  },
+  {
+    title: "Step 39: Setup Complete",
+    description: "Your PC is now setup successfully!",
+    content: (
+      <Image src="/setup/Tuto_Pic_39.jpg" width={300} height={300} className="h-full w-full object-cover" alt="Step 39" />
+    ),
+  },
+] as const;

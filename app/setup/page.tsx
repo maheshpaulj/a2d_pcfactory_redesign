@@ -3,7 +3,6 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import Image from "next/image";
 
 // Simple confetti function (replace with actual confetti library if desired)
 const fireConfetti = () => {

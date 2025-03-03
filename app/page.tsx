@@ -6,7 +6,7 @@ import gsap from "gsap";
 import Image from "next/image";
 import { Tilt } from "@/components/ui/tilt";
 import { Spotlight } from "@/components/ui/spotlight";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import TimelineSection from "@/components/TimelineSection";
 
 const playfair = Playwrite_IT_Moderna({
@@ -260,7 +260,7 @@ export default function Home() {
                 Get in <span className="text-yellow-500">Touch</span>
               </h2>
               <p className="text-lg mb-8 max-w-2xl mx-auto">
-                Have questions or ready to build your dream PC? Reach out to us—we're here to help you every step of the way!
+                Have questions or ready to build your dream PC? Reach out to us—we&apos;re here to help you every step of the way!
               </p>
               <a
                 href="mailto:support@a2dpcfactory.com"
