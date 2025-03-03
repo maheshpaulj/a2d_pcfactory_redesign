@@ -91,3 +91,26 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+.wrapper {
+  position: relative;
+  padding: 20px 0;
+}
+
+.timeline {
+  transition: background-color 0.5s ease;
+}
+
+.circleWrapper {
+  position: relative;
+}
+
+.circle {
+  position: relative;
+  z-index: 1;
+}
+
+.message {
+  transition: opacity 0.5s ease;
+}
