@@ -5,10 +5,52 @@ import Link from 'next/link';
 import { FaYoutube, FaInstagram, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
+import { useTransitionRouter } from 'next-view-transitions';
 
 const Footer: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const router = useTransitionRouter();
+  
+    function slideInOut() {
+      document.documentElement.animate(
+        [
+          {
+            opacity: 1,
+            scale: 1,
+            transform: "translateY(0)",
+          },
+          {
+            opacity: 0.2,
+            scale: 0.9,
+            transform: "translateY(-35%)",
+          },
+        ],
+        {
+          duration: 1500,
+          easing: "cubic-bezier(0.87, 0, 0.13, 1)",
+          fill: "forwards",
+          pseudoElement: "::view-transition-old(root)",
+        }
+      );
+  
+      document.documentElement.animate(
+        [
+          {
+            clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+          },
+          {
+            clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)",
+          },
+        ],
+        {
+          duration: 1500,
+          easing: "cubic-bezier(0.87, 0, 0.13, 1)",
+          fill: "forwards",
+          pseudoElement: "::view-transition-new(root)",
+        }
+      );
+    }
 
   const containerVariants = {
     hidden: {},
@@ -68,7 +110,7 @@ const Footer: React.FC = () => {
         >
           {/* Logo & About */}
           <motion.div className="footer-section" variants={sectionVariants}>
-            <Link href="/" className="text-xl sm:text-2xl font-bold text-amber-400 mb-4 flex flex-col items-center sm:items-start">
+            <Link href="/" onClick={(e) => { e.preventDefault(); router.push("/", { onTransitionReady: slideInOut });}} className="text-xl sm:text-2xl font-bold text-amber-400 mb-4 flex flex-col items-center sm:items-start">
               <Image src={"/logo.webp"} alt='logo' width={100} height={100} className="mb-2" />
               A2D PC Factory
             </Link>
@@ -78,13 +120,13 @@ const Footer: React.FC = () => {
           <motion.div className="footer-section" variants={sectionVariants}>
             <h4 className="text-lg font-semibold text-amber-400 mb-4 text-center sm:text-left">Company</h4>
             <nav className="space-y-3 flex flex-col items-center sm:items-start">
-              <Link href="/" className="block text-gray-300 hover:text-amber-400 transition-colors text-sm">
+              <Link href="/" onClick={(e) => { e.preventDefault(); router.push("/", { onTransitionReady: slideInOut });}} className="block text-gray-300 hover:text-amber-400 transition-colors text-sm">
                 About Us
               </Link>
-              <Link href="/terms" className="block text-gray-300 hover:text-amber-400 transition-colors text-sm">
+              <Link href="/terms" onClick={(e) => { e.preventDefault(); router.push("/terms", { onTransitionReady: slideInOut });}} className="block text-gray-300 hover:text-amber-400 transition-colors text-sm">
                 Terms & Conditions
               </Link>
-              <Link href="/setup" className="block text-gray-300 hover:text-amber-400 transition-colors text-sm">
+              <Link href="/setup" onClick={(e) => { e.preventDefault(); router.push("/setup", { onTransitionReady: slideInOut });}} className="block text-gray-300 hover:text-amber-400 transition-colors text-sm">
                 PC Setup Guide
               </Link>
             </nav>
