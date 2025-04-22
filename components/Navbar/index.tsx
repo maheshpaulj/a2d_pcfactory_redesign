@@ -3,20 +3,65 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ChevronDown, Menu, X } from "lucide-react";
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useTransitionRouter } from "next-view-transitions";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const router = useRouter();
+  const router = useTransitionRouter();
+
+  function slideInOut() {
+    document.documentElement.animate(
+      [
+        {
+          opacity: 1,
+          scale: 1,
+          transform: "translateY(0)",
+        },
+        {
+          opacity: 0.2,
+          scale: 0.9,
+          transform: "translateY(-35%)",
+        },
+      ],
+      {
+        duration: 1500,
+        easing: "cubic-bezier(0.87, 0, 0.13, 1)",
+        fill: "forwards",
+        pseudoElement: "::view-transition-old(root)",
+      }
+    );
+
+    document.documentElement.animate(
+      [
+        {
+          clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+        },
+        {
+          clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)",
+        },
+      ],
+      {
+        duration: 1500,
+        easing: "cubic-bezier(0.87, 0, 0.13, 1)",
+        fill: "forwards",
+        pseudoElement: "::view-transition-new(root)",
+      }
+    );
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,56 +76,99 @@ const Navbar = () => {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-black shadow-md"
-          : "bg-transparent"
+        isScrolled ? "bg-black shadow-md" : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="text-xl font-bold">
+            <Link
+              onClick={(e) => {
+                e.preventDefault();
+                router.push("/", { onTransitionReady: slideInOut });
+              }}
+              href="/"
+              className="text-xl font-bold"
+            >
               <Image src="/logo.webp" alt="logo" width={52} height={52} />
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              <Link
-                href="/"
-                className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-white/20 transition"
-              >
-                Home
-              </Link>
-              <Link
-                href="/terms"
-                className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-white/20 transition"
-              >
-                Terms
-              </Link>
-              <DropdownMenu>
-                <DropdownMenuTrigger
-                  className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-white/20 flex items-center transition"
-                >
-                  Products
-                  <ChevronDown className="ml-1 h-4 w-4" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuItem asChild>
-                    <Link href="/setup" className="w-full cursor-pointer">
-                      How to Setup
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="https://forms.gle/XX9JRv5btQFmfEGV6" target="_blank" className="w-full cursor-pointer">
-                      Buy a PC
-                    </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <Link href="/" passHref>
+                    <NavigationMenuLink
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        "text-white hover:bg-white/20 transition bg-transparent hover:text-white"
+                      )}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        router.push("/", { onTransitionReady: slideInOut });
+                      }}
+                    >
+                      Home
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/terms" passHref>
+                    <NavigationMenuLink
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        "text-white hover:text-white hover:bg-white/20 transition bg-transparent "
+                      )}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        router.push("/terms", { onTransitionReady: slideInOut });
+                      }}
+                    >
+                      Terms
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-white hover:text-white hover:bg-white/20 bg-transparent">
+                    Products
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid gap-3 p-4 w-[200px] bg-black/90 border-black">
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <a
+                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors text-white hover:bg-white/20"
+                            href="/setup"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              router.push("/setup", {
+                                onTransitionReady: slideInOut,
+                              });
+                            }}
+                          >
+                            How to Setup
+                          </a>
+                        </NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors text-white hover:bg-white/20"
+                            href="https://forms.gle/XX9JRv5btQFmfEGV6"
+                            target="_blank"
+                          >
+                            Buy a PC
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
           </div>
 
           {/* Contact */}
@@ -96,66 +184,90 @@ const Navbar = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"
+                  d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18V1H7V18H9Z"
                   className="fill-gray-50 group-hover:fill-gray-50"
-                ></path>
+                />
               </svg>
             </button>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-white"
-            >
-              <span className="sr-only">Open main menu</span>
-              {isMobileMenuOpen ? (
-                <X className="h-8 w-8" />
-              ) : (
-                <Menu className="h-8 w-8" />
-              )}
-            </button>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-white hover:bg-white/20"
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                >
+                  <span className="sr-only">Open main menu</span>
+                  {isMobileMenuOpen ? (
+                    <X className="h-8 w-8" />
+                  ) : (
+                    <Menu className="h-8 w-8" />
+                  )}
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="bg-black/90 border-none">
+                <div className="flex flex-col gap-2 mt-8">
+                  <Link
+                    href="/"
+                    className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/20"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      router.push("/", { onTransitionReady: slideInOut });
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    Home
+                  </Link>
+                  <Link
+                    href="/terms"
+                    className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/20"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      router.push("/terms", { onTransitionReady: slideInOut });
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    Terms
+                  </Link>
+                  <Link
+                    href="/setup"
+                    className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/20"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      router.push("/setup", { onTransitionReady: slideInOut });
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    How to Setup
+                  </Link>
+                  <Link
+                    href="https://forms.gle/XX9JRv5btQFmfEGV6"
+                    target="_blank"
+                    className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/20"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Buy a PC
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/20"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      router.push("/contact", { onTransitionReady: slideInOut });
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    Contact
+                  </Link>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 rounded-b-lg bg-black/90">
-              <Link
-                href="/"
-                className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/20"
-              >
-                Home
-              </Link>
-              <Link
-                href="/terms"
-                className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/20"
-              >
-                Terms
-              </Link>
-              <Link
-                href="/setup"
-                className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/20"
-              >
-                How to Setup
-              </Link>
-              <Link
-                href="/products/buy"
-                className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/20"
-              >
-                Buy a PC
-              </Link>
-              <Link
-                href="/contact"
-                className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/20"
-              >
-                Contact
-              </Link>
-            </div>
-          </div>
-        )}
       </div>
     </nav>
   );

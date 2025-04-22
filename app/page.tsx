@@ -1,7 +1,7 @@
 "use client";
 
 import { Playwrite_IT_Moderna } from "next/font/google";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import { Tilt } from "@/components/ui/tilt";
@@ -23,8 +23,22 @@ export default function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const glow1Ref = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [animationKey, setAnimationKey] = useState(0);
 
-  useEffect(() => {
+  // Function to start animations
+  const startAnimations = () => {
+    // Reset element styles to their initial state
+    gsap.set([
+      badgeRef.current,
+      titleRef.current,
+      textRef.current,
+      buttonRef.current,
+      videoRef.current,
+      glow1Ref.current,
+      accentLineRef.current
+    ], { clearProps: "all" });
+    
+    // Create new timeline
     const tl = gsap.timeline();
 
     tl.from(badgeRef.current, {
@@ -82,6 +96,55 @@ export default function Home() {
         },
         "-=1"
       );
+      
+    return tl;
+  };
+
+  // Effect for scroll to top on page load/refresh
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // Effect for animation setup
+  useEffect(() => {
+    // Kill any running animations first
+    gsap.killTweensOf([
+      badgeRef.current,
+      titleRef.current,
+      textRef.current,
+      buttonRef.current,
+      videoRef.current,
+      glow1Ref.current,
+      accentLineRef.current
+    ]);
+    
+    // Start new animations
+    const timeline = startAnimations();
+    
+    // Cleanup function
+    return () => {
+      timeline.kill();
+    };
+  }, [animationKey]);
+
+  // Listen for router events to reset animations when returning to this page
+  useEffect(() => {
+    // Function to refresh animations when navigating back to this page
+    const handleRouteChange = () => {
+      window.scrollTo(0, 0);
+      setAnimationKey(prev => prev + 1); // Change key to force animation reset
+    };
+
+    // You can also listen for visibility changes as an alternative approach
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        handleRouteChange();
+      }
+    });
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleRouteChange);
+    };
   }, []);
 
   // Framer Motion variants
@@ -109,7 +172,7 @@ export default function Home() {
   };
 
   return (
-      <main>
+      <main className="bg-white">
         {/* Hero Section */}
         <section
           ref={heroRef}
@@ -171,6 +234,7 @@ export default function Home() {
             muted
             className="scale-[.80] z-10"
             loop
+            autoPlay
             playsInline
           />
           <div
@@ -185,11 +249,12 @@ export default function Home() {
           className="py-16 mt-12 bg-white text-black overflow-hidden"
         >
           <motion.div
+            key={`features-${animationKey}`}
             className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ amount: 0.2 }} // Removed once: true
+            viewport={{ amount: 0.2 }}
           >
             {[
               {
@@ -241,11 +306,12 @@ export default function Home() {
         </section>
 
         {/* How Things Work Section */}
-        <TimelineSection />
+        <TimelineSection key={`timeline-${animationKey}`} />
 
         {/* Get in Touch Section */}
         <section className="py-16">
           <motion.div
+            key={`contact-${animationKey}`}
             className="max-w-6xl mx-auto text-center p-1 bg-gradient-to-r from-amber-400 to-amber-600 rounded-2xl text-white relative overflow-hidden shadow-lg"
             initial={{ scale: 0.9 }}
             whileInView={{ scale: 1 }}
@@ -253,7 +319,7 @@ export default function Home() {
               duration: 0.5,
               ease: "easeOut",
             }}
-            viewport={{ amount: 0.2 }} // Removed once: true
+            viewport={{ amount: 0.2 }}
           >
             <div className="bg-black max-w-6xl mx-auto text-center rounded-xl px-4 py-24">
               <h2 className="text-4xl font-bold mb-6">
